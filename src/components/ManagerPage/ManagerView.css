@@ -54,10 +54,26 @@ th {
 
 td {
   padding: 10px;
+   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
 .link {
   color: #1f5daa;
   cursor: pointer;
+}
+
+
+.show-all-container {
+  text-align: center;
+  margin-top: 20px; /* Increased from 15px to 30px for more space */
+}
+
+.show-all-btn {
+  background-color: transparent;
+  border: none;
+  color: #fca311;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
 }
