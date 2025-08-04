@@ -93,7 +93,7 @@ const TrackingPage: React.FC = () => {
                           : "text-yellow-600"
                       }`}
                     >
-                      {app.status ?? "Pending"}
+                      {app.status === "Waiting Approval"? "In Progress" : app.status}
                     </td>
                     <td className="py-3 px-4">
                       {app.status?.toLowerCase() === "approved" ? (

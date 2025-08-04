@@ -87,6 +87,7 @@ const ManagerView: React.FC = () => {
               <th>Application Number</th>
               <th>Full Name</th>
               <th>Date Of Submission</th>
+              <th>Vetting Status</th>
             </tr>
           </thead>
           <tbody>
@@ -108,6 +109,7 @@ const ManagerView: React.FC = () => {
                     hour12: true,
                   })}
                 </td>
+                <td>Successful</td>
               </tr>
             ))}
           </tbody>
