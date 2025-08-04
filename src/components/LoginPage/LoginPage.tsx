@@ -5,13 +5,16 @@ import ManagerView from '../ManagerPage/ManagerView';
 import TrackingPage from '../TrackingPage/TrackingPage';
 import FormPage from '../FormPage/FormPage';
 import HomePage from '../FormPage/HomePage';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const LoginPage: React.FC = () => {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
   const allowedUsers: Record<string, string> = {
@@ -35,8 +38,10 @@ const LoginPage: React.FC = () => {
 
   // If user is logged in, show their respective component
   if (loggedInUser === 'Akshata.Shinde@gmail.com') {
+    navigate('/home');
     return <HomePage />;
   } else if (loggedInUser === 'Ram@gmail.com') {
+    navigate('/managerhome');
     return <ManagerView />;
   }
 

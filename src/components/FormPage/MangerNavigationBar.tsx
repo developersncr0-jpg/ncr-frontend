@@ -2,30 +2,32 @@ import React, { useState } from 'react';
 import './NavigationBar.css';
 import { useNavigate } from 'react-router-dom';
 
-const NavigationBar: React.FC = () => {
-  const [active, setActive] = useState('Home');
+const MangerNavigationBar: React.FC = () => {
+  const [active, setActive] = useState('manager');
   const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Home', path: '/home' },
-    { name: 'Fill Form', path: '/newForm' },
-    { name: 'Application Status', path: '/tracking' },
-    { name: 'MEDIA', path: '/media' },
-    { name: 'CAREERS', path: '/tracking' },
-    { name: 'PROCUREMENT', path: '/tracking' },
+    { name: 'HOME', path: '/managerhome' },
+    { name: 'REGISTRANTS', path: '/manager' },
+    { name: 'MEDIA' },
+    { name: 'CAREERS' },
+    { name: 'PROCUREMENT' },
     { name: 'Logout', path: '/' },
   ];
 
   React.useEffect(() => {
-    if (window.location.pathname === '/newForm') {
-      setActive('Fill Form');
+    if (window.location.pathname === '/managerhome') {
+      setActive('HOME');
     }
-    if (window.location.pathname === '/tracking') {
-      setActive('Application Status');
-    }
-    if (window.location.pathname === '/') {
-      setActive('Logout');
-    }
+  if (window.location.pathname === '/manager') {
+    setActive('REGISTRANTS');
+  } else if (window.location.pathname === '/media') {
+    setActive('MEDIA');
+  } else if (window.location.pathname === '/careers') {
+    setActive('CAREERS');
+  } else if (window.location.pathname === '/procurement') {
+    setActive('PROCUREMENT');
+  }
   }, []);
 
 
@@ -53,4 +55,4 @@ const NavigationBar: React.FC = () => {
   );
 };
 
-export default NavigationBar;
+export default MangerNavigationBar;
