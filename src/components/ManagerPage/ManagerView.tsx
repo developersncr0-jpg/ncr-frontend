@@ -5,6 +5,8 @@ import type { RootState, AppDispatch } from '../../redux/store';
 import { Link } from 'react-router-dom';
 import './ManagerView.css';
 import LoginPage from '../LoginPage/LoginPage';
+import NavigationBar from '../FormPage/NavigationBar';
+import MangerNavigationBar from '../FormPage/MangerNavigationBar';
 
 const ManagerView: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -66,7 +68,11 @@ const ManagerView: React.FC = () => {
   }
 
   return (
+    <div>
+       <MangerNavigationBar />
+
     <div className="manager-container">
+      
       <h1 className="title">Cases</h1>
       <div className="search-filter">
         <input
@@ -121,6 +127,7 @@ const ManagerView: React.FC = () => {
       <div className="show-all-container">
         <button className="filter-btn" onClick={handleLogout}>Logout</button>
       </div>
+    </div>
     </div>
   );
 };
