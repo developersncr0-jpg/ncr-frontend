@@ -91,7 +91,7 @@ const ManagerView: React.FC = () => {
                 </td>
                 <td>{row['applicantName']}</td>
                 <td>
-                  {new Date(row['dateOfCommencement']).toLocaleString('en-GB', {
+                  {new Date(row['updatedAt']).toLocaleString('en-GB', {
                     day: '2-digit',
                     month: 'short',
                     year: 'numeric',
