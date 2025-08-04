@@ -179,7 +179,7 @@ const FormPage: React.FC = () => {
       
       <div className="show-all-container">
 
-        <button className="filter-btn" onClick={handleSubmit}>Submit</button>
+        <button type="button" className="filter-btn" onClick={handleSubmit}>Submit</button>
       </div>
 
         
