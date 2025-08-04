@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   preview: {
-    allowedHosts: ['jarvis-cwa-614442955083.europe-west1.run.app'],
+    allowedHosts: ['ncr-frontend-701153034898.europe-west1.run.app'],
     host: true
   }
 })
