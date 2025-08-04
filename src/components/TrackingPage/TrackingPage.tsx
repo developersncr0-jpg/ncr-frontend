@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 interface Application {
-  submittedDate: string;
-  applicationNumber: string;
-  fullName: string;
-  status: string;
-  downloadCertificate?: string; // optional link
+    applicationId: string;
+    personId: string;
+    applicantName: string;
+    legalStatus: string;
+    ciproRegistrationNumber: string;
+    dateOfCommencement: string;
+    financialYearEnd: string;
+    incomeTaxNumber: string;
+    vatRegistrationNumber: string;
+    createdAt: string;
+    updatedAt: string;
+    status: string | null;
 }
 
 const TrackingPage: React.FC = () => {
@@ -13,11 +20,11 @@ const TrackingPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8084/api/viewbypersonid", {
+    fetch("https://ncr-backend-701153034898.europe-west1.run.app/viewbypersonid", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        personalId: "12345",
+        personalId: "12462",
       },
     })
       .then((res) => res.json())
@@ -60,19 +67,19 @@ const TrackingPage: React.FC = () => {
             <tbody>
               {applications.map((app, index) => (
                 <tr key={index} className="border-t hover:bg-gray-50">
-                  <td className="py-3 px-4">{app.submittedDate}</td>
-                  <td className="py-3 px-4">{app.applicationNumber}</td>
-                  <td className="py-3 px-4">{app.fullName}</td>
+                  <td className="py-3 px-4">{app.createdAt}</td>
+                  <td className="py-3 px-4">{app.applicationId}</td>
+                  <td className="py-3 px-4">{app.applicantName}</td>
                   <td
                     className={`py-3 px-4 font-medium ${
-                      app.status.toLowerCase() === "approved"
+                      app.status?.toLowerCase() == 'approved'
                         ? "text-green-600"
-                        : app.status.toLowerCase() === "rejected"
+                        : app.status?.toLowerCase() == 'rejected'
                         ? "text-red-600"
                         : "text-yellow-600"
                     }`}
                   >
-                    {app.status}
+                    {app.status ?? 'Pending'}
                   </td>
                   <td className="py-3 px-4">
                     {app.downloadCertificate ? (
