@@ -91,19 +91,20 @@ const TrackingPage: React.FC = () => {
                   >
                     {app.status ?? 'Pending'}
                   </td>
-                  <td className="py-3 px-4">
-                    {app.downloadCertificate ? (
-                      <a
-                        href={app.downloadCertificate}
-                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                        download
-                      >
-                        Download
-                      </a>
-                    ) : (
-                      <span className="text-gray-400">Not Available</span>
-                    )}
-                  </td>
+               <td className="py-3 px-4">
+  {app.status?.toLowerCase() === "approved" ? (
+    <a
+      href="/assets/certificate.png"
+      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+      download={`certificate_${app.applicationId}.png`}
+    >
+      Download
+    </a>
+  ) : (
+    <span className="text-gray-400">Not Available</span>
+  )}
+</td>
+
                 </tr>
               ))}
             </tbody>
