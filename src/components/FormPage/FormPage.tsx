@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './FormPage.css';
+import LoginPage from '../LoginPage/LoginPage';
 
 const FormPage: React.FC = () => {
   const [personId, setPersonId] = useState('');
@@ -11,6 +12,13 @@ const FormPage: React.FC = () => {
   const [financialYearEnd, setFinancialYearEnd] = useState('');
   const [incomeTaxNumber, setIncomeTaxNumber] = useState('');
   const [vatRegistrationNumber, setVatRegistrationNumber] = useState('');
+  const [loggedOut, setLoggedOut] = useState(false);
+  const logoutfunction = () => {
+    setLoggedOut(true);
+  };
+  if (loggedOut) {
+    return <LoginPage />;
+  }
 
   const handleSubmit = async () => {
     const data = {
@@ -25,9 +33,15 @@ const FormPage: React.FC = () => {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
+        
+
+      
+   
+  
+   
 
     try {
-      const response = await fetch('http://localhost:9092/validate', {
+      const response = await fetch('https://ncr-backend-701153034898.europe-west1.run.app/validate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,6 +64,7 @@ const FormPage: React.FC = () => {
     }
   };
 
+  
   return (
     <div className="form-container">
       <h2 className="form-header">PART 1 – APPLICANT’S INFORMATION</h2>
@@ -160,6 +175,11 @@ const FormPage: React.FC = () => {
           <button type="button" className="form-button" onClick={handleSubmit}>
             Submit
           </button>
+        </div>
+
+        <div className="show-all-container">
+
+        <button className="filter-btn" onClick={logoutfunction}>Logout</button>
         </div>
       </form>
     </div>
