@@ -17,25 +17,35 @@ const ManagerView: React.FC = () => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [loggedOut, setLoggedOut] = useState(false);
 
-
   useEffect(() => {
     dispatch(fetchApplications());
   }, [dispatch]);
 
   useEffect(() => {
-    setFilteredData(applications);
+    const sortedByUpdated = [...applications].sort(
+      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+    setFilteredData(sortedByUpdated);
   }, [applications]);
 
   const handleSearch = () => {
     const filtered = applications.filter(app =>
       app['applicationId'].toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredData(filtered);
+
+    const sorted = [...filtered].sort(
+      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+
+    setFilteredData(sorted);
   };
 
   const handleShowAll = () => {
     setSearchTerm('');
-    setFilteredData(applications);
+    const sorted = [...applications].sort(
+      (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    );
+    setFilteredData(sorted);
   };
 
   const handleLogout = () => {
@@ -55,8 +65,6 @@ const ManagerView: React.FC = () => {
     );
   }
 
-
-
   return (
     <div className="manager-container">
       <h1 className="title">Cases</h1>
@@ -70,8 +78,8 @@ const ManagerView: React.FC = () => {
           onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }}
         />
         <button className="filter-btn" onClick={handleSearch}>Search</button>
-
       </div>
+
       <div className="table-wrapper">
         <table>
           <thead>
@@ -105,19 +113,16 @@ const ManagerView: React.FC = () => {
           </tbody>
         </table>
       </div>
+
       <div className="show-all-container">
         <button className="show-all-btn" onClick={handleShowAll}>Show All</button>
-
       </div>
 
       <div className="show-all-container">
-
         <button className="filter-btn" onClick={handleLogout}>Logout</button>
       </div>
-
     </div>
   );
 };
 
 export default ManagerView;
-
