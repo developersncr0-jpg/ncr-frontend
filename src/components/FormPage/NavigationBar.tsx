@@ -7,7 +7,7 @@ const NavigationBar: React.FC = () => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/home' },
     { name: 'Fill Form', path: '/newForm' },
     { name: 'Application Status', path: '/tracking' },
     { name: 'Logout', path: '/' },

@@ -7,6 +7,7 @@ import topLogo from './assets/topPage.png';
 import FormPage from './components/FormPage/FormPage';
 import TrackingPage from './components/TrackingPage/TrackingPage';
 import ManagerFormPage from './components/ManagerPage/ManagerFormPage';
+import HomePage from './components/FormPage/HomePage';
 // import VerificationPage from './components/VerificationPage/VerificationPage'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<LoginPage />} />
+              <Route path="/home" element={<HomePage />} />
             <Route path="/manager" element={<ManagerView />} />
             <Route path="/newForm" element={<FormPage />} />
             <Route path="/tracking" element={<TrackingPage />} />
