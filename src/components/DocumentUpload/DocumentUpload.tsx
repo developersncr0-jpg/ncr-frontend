@@ -33,9 +33,20 @@ const DocumentUpload: React.FC<Props> = ({ onDocumentIdExtracted, onManualEntry 
 
     try {
       const res = await axios.post(
-        'https://jarvis-engine-595603232563.europe-west1.run.app/document',
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
+        'https://ncr-backend-dev-701153034898.europe-west1.run.app/view',
+        {
+          personId: "12345",
+          applicantName: "John Doe",
+          legalStatus: "2.1 Private Company",
+          ciproRegistrationNumber: "CIPRO123",
+          dateOfCommencement: "2022-01-01",
+          financialYearEnd: "2022-12-31",
+          incomeTaxNumber: "IT123456",
+          vatRegistrationNumber: "IT123458",
+          createdAt: "2025-08-02T10:00:00Z",
+          updatedAt: "2025-08-02T10:00:00Z"
+        },
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
       if (res.data) {

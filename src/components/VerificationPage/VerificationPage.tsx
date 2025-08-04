@@ -6,6 +6,7 @@ import AutofillForm from '../AutofillForm/AutofillForm';
 import Layout from '../Layout/Layout';
 import LeftPaneProgress from '../LeftPaneProgress/LeftPaneProgress'
 import './VerificationPage.css';
+import FormPage from '../FormPage/formpage';
 
 const VerificationPage: React.FC = () => {
   const [docId, setDocId] = useState('');
@@ -51,27 +52,10 @@ const VerificationPage: React.FC = () => {
 
   return (
       <>
-      <div className="verification-page">
-        <LeftPaneProgress currentStep={step} />
-        <div className="right-content">
+     
+       
+      <FormPage></FormPage>
 
-    <Layout step={step}>
-
-      {step === 'upload' && (
-        <DocumentUpload onDocumentIdExtracted={(id) => handleExtractId(id)}  onManualEntry={(id) => handleIDConfirm(id)} />
-      )}
-      {step === 'confirm' && (
-        <IDConfirmationSection docId={docId} onConfirm={() => handleIDConfirm(docId)} onReject={() => setStep('upload')} />
-      )}
-      {step === 'verification' && <VerificationLoader />}
-
-    </Layout>
-    </div>
-
-    </div>
-    <div className="verification-page">
-    <AutofillForm userData={details} manual={verificationComplete} />
-    </div>
     </>
 
   );
