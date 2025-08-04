@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
-import VerificationPage from '../VerificationPage/VerificationPage';
 import ManagerView from '../ManagerPage/ManagerView';
-import TrackingPage from '../TrackingPage/TrackingPage';
-import FormPage from '../FormPage/FormPage';
 import HomePage from '../FormPage/HomePage';
 import { useNavigate } from 'react-router-dom';
-
+import loginpage from './../../assets/loginpage.png'; // Adjust the path as necessary
 
 
 const LoginPage: React.FC = () => {
@@ -47,8 +44,10 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="login-container">
-      
 
+      <div>
+        <img src={loginpage} alt="Logo" className="logo" />
+      </div>
       <form className="login-form" onSubmit={handleSubmit}>
         <label style={{textAlign:"left"}}>Email Address</label>
         <input
