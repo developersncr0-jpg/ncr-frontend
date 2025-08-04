@@ -4,7 +4,7 @@ import './App.css'
 import LoginPage from './components/LoginPage/LoginPage';
 import ManagerView from './components/ManagerPage/ManagerView';
 import topLogo from './assets/topPage.png';
-import FormPage from './components/ManagerPage/FormPage';
+import FormPage from './components/ManagerPage/ManagerFormPage';
 import TrackingPage from './components/TrackingPage/TrackingPage';
 // import VerificationPage from './components/VerificationPage/VerificationPage'
 

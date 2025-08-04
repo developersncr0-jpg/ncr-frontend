@@ -4,7 +4,7 @@ import axios from 'axios';
 export const fetchApplications = createAsyncThunk(
   'applications/fetchApplications',
   async () => {
-    const response = await axios.get('http://localhost:5000/applications');
+    const response = await axios.get('https://ncr-backend-701153034898.europe-west1.run.app/view');
     return response.data;
   }
 );
