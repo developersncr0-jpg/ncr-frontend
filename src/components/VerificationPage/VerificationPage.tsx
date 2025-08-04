@@ -6,7 +6,7 @@ import AutofillForm from '../AutofillForm/AutofillForm';
 import Layout from '../Layout/Layout';
 import LeftPaneProgress from '../LeftPaneProgress/LeftPaneProgress'
 import './VerificationPage.css';
-import FormPage from '../FormPage/formpage';
+import FormPage from '../FormPage/FormPage';
 
 const VerificationPage: React.FC = () => {
   const [docId, setDocId] = useState('');
@@ -17,38 +17,39 @@ const VerificationPage: React.FC = () => {
   const [step, setStep] = useState<'upload' | 'confirm' | 'verification' | 'form'>('upload');
 
 
-  const handleIDConfirm = (id) => {
-      setDocId(id);
+  // const handleIDConfirm = (id) => {
+  //     setDocId(id);
 
-    setConfirmed(true);
-    setStep('verification');
-    setTimeout(async () => {
-        try {
-      const res = await fetch(`https://jarvis-engine-595603232563.europe-west1.run.app/id?id=${id}`);
-     if (res.ok) {
-         const data = await res.json();
-          if (data?.firstName) {
-                 setDetails(data);
-                 setStep('form');
-                 setVerificationComplete(true);
-               }
-     } else {
-         setStep('failedForm');
-                 setVerificationComplete(false);
-        }
-    } catch (e) {
-        setStep('failedForm');
-        setVerificationComplete(false);
-        };
+  //   setConfirmed(true);
+  //   setStep('verification');
+  //   setTimeout(async () => {
+  //       try {
+  //     const res = await fetch(`https://jarvis-engine-595603232563.europe-west1.run.app/id?id=${id}`);
+  //    if (res.ok) {
+  //        const data = await res.json();
+  //         if (data?.firstName) {
+  //                setDetails(data);
+  //                setStep('form');
+  //                setVerificationComplete(true);
+  //              }
+  //    } 
+  //    else {
+  //       //  setStep('failedForm');
+  //                setVerificationComplete(false);
+  //       }
+  //   } catch (e) {
+  //       // setStep('failedForm');
+  //       setVerificationComplete(false);
+  //       };
 
 
-    }, 10);
-  };
+  //   }, 10);
+  // };
 
-  const handleExtractId = (id) => {
-     setDocId(id);
-     setStep('confirm');
-  }
+  // const handleExtractId = (id) => {
+  //    setDocId(id);
+  //    setStep('confirm');
+  // }
 
   return (
       <>
