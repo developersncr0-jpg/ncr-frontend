@@ -42,18 +42,20 @@ const LoginPage: React.FC = () => {
       
 
       <form className="login-form" onSubmit={handleSubmit}>
-        <label>Email Address</label>
+        <label style={{textAlign:"left"}}>Email Address</label>
         <input
           type="email"
           placeholder="Enter your email"
+          style={{width:"94%"}}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="form-input"
         />
 
-        <label>Password</label>
+        <label style={{textAlign:"left"}}>Password</label>
         <input
           type="password"
+           style={{width:"94%"}}
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

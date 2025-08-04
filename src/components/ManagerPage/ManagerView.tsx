@@ -28,7 +28,7 @@ const ManagerView: React.FC = () => {
 
   const handleSearch = () => {
     const filtered = applications.filter(app =>
-      app['Application Number'].toLowerCase().includes(searchTerm.toLowerCase())
+      app['applicationId'].toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredData(filtered);
   };
@@ -45,6 +45,15 @@ const ManagerView: React.FC = () => {
   if (loggedOut) {
     return <LoginPage />;
   }
+
+  if (loading) {
+  return (
+    <div className="spinner-container">
+      <div className="spinner" />
+      <p>Loading applications...</p>
+    </div>
+  );
+}
 
   
 
@@ -76,12 +85,12 @@ const ManagerView: React.FC = () => {
             {filteredData.map((row, index) => (
               <tr key={index}>
                 <td className="link">
-                  <Link to={`/form/${row['Application Number']}`}>
-                    {row['Application Number']}
+                  <Link to={`/form/${row['applicationId']}`}>
+                    {row['applicationId']}
                   </Link>
                 </td>
-                <td>{row['Full Name']}</td>
-                <td>{row['Date Of Submission']}</td>
+                <td>{row['applicantName']}</td>
+                <td>{row['dateOfCommencement']}</td>
               </tr>
             ))}
           </tbody>
