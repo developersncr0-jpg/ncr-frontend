@@ -15,7 +15,7 @@ const ManagerView: React.FC = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredData, setFilteredData] = useState<any[]>([]);
-    const [loggedOut, setLoggedOut] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
 
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const ManagerView: React.FC = () => {
     setSearchTerm('');
     setFilteredData(applications);
   };
-  
-    const handleLogout = () => {
+
+  const handleLogout = () => {
     setLoggedOut(true);
   };
 
@@ -47,15 +47,15 @@ const ManagerView: React.FC = () => {
   }
 
   if (loading) {
-  return (
-    <div className="spinner-container">
-      <div className="spinner" />
-      <p>Loading applications...</p>
-    </div>
-  );
-}
+    return (
+      <div className="spinner-container">
+        <div className="spinner" />
+        <p>Loading applications...</p>
+      </div>
+    );
+  }
 
-  
+
 
   return (
     <div className="manager-container">
@@ -90,7 +90,16 @@ const ManagerView: React.FC = () => {
                   </Link>
                 </td>
                 <td>{row['applicantName']}</td>
-                <td>{row['dateOfCommencement']}</td>
+                <td>
+                  {new Date(row['dateOfCommencement']).toLocaleString('en-GB', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true,
+                  })}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -100,8 +109,8 @@ const ManagerView: React.FC = () => {
         <button className="show-all-btn" onClick={handleShowAll}>Show All</button>
 
       </div>
-      
-       <div className="show-all-container">
+
+      <div className="show-all-container">
 
         <button className="filter-btn" onClick={handleLogout}>Logout</button>
       </div>

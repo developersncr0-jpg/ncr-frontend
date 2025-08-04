@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import './LoginPage.css';
 import VerificationPage from '../VerificationPage/VerificationPage';
 import ManagerView from '../ManagerPage/ManagerView';
+import TrackingPage from '../TrackingPage/TrackingPage';
+import FormPage from '../FormPage/FormPage';
+import HomePage from '../FormPage/HomePage';
 
 
 
@@ -32,7 +35,7 @@ const LoginPage: React.FC = () => {
 
   // If user is logged in, show their respective component
   if (loggedInUser === 'Akshata.Shinde@gmail.com') {
-    return <VerificationPage />;
+    return <HomePage />;
   } else if (loggedInUser === 'Ram@gmail.com') {
     return <ManagerView />;
   }

@@ -1,0 +1,60 @@
+/* Container to center the logo block */
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6rem;
+}
+
+/* Logo card block */
+.login-logo {
+  text-align: center;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover effect only on the logo block */
+.login-logo:hover {
+  background-color: #fff5e6; /* Light orange/yellow tone */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.ncr-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.ncr-title:hover {
+  color: #D47F00;
+}
+
+/* Subtitle */
+.ncr-subtitle {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Tagline button */
+.ncr-tagline {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background-color: #e94f1d;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.ncr-tagline:hover {
+  background-color: #c2360a;
+}

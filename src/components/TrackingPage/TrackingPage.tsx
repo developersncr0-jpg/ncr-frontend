@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import NavigationBar from "../FormPage/NavigationBar";
 
 interface Application {
     applicationId: string;
@@ -39,6 +40,8 @@ const TrackingPage: React.FC = () => {
   }, []);
 
   return (
+     <div>
+      <NavigationBar />
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="bg-orange-500 text-white text-center py-4 rounded-md shadow-md">
@@ -57,7 +60,7 @@ const TrackingPage: React.FC = () => {
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-gray-100 text-gray-700 text-left">
-                <th className="py-3 px-4 font-semibold">Submitted Date</th>
+                <th className="py-3 px-4 font-semibold">Date Of Submission</th>
                 <th className="py-3 px-4 font-semibold">Application Number</th>
                 <th className="py-3 px-4 font-semibold">Full Name</th>
                 <th className="py-3 px-4 font-semibold">Status</th>
@@ -67,7 +70,14 @@ const TrackingPage: React.FC = () => {
             <tbody>
               {applications.map((app, index) => (
                 <tr key={index} className="border-t hover:bg-gray-50">
-                  <td className="py-3 px-4">{app.createdAt}</td>
+                  <td className="py-3 px-4">  {new Date(app.createdAt).toLocaleString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })}</td>
                   <td className="py-3 px-4">{app.applicationId}</td>
                   <td className="py-3 px-4">{app.applicantName}</td>
                   <td
@@ -100,6 +110,7 @@ const TrackingPage: React.FC = () => {
           </table>
         )}
       </div>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './FormPage.css';
 import LoginPage from '../LoginPage/LoginPage';
+import NavigationBar from '../FormPage/NavigationBar';
+import '../ManagerPage/ManagerView.css'
+
 
 const FormPage: React.FC = () => {
   const [personId, setPersonId] = useState('');
@@ -66,12 +69,14 @@ const FormPage: React.FC = () => {
 
   
   return (
+    <div>
+      <NavigationBar ></NavigationBar>
     <div className="form-container">
-      <h2 className="form-header">PART 1 – APPLICANT’S INFORMATION</h2>
+      <h2 className="form-header">APPLICANT’S INFORMATION</h2>
 
       <form>
         <div className="form-row">
-          <label className="form-label">Person ID</label>
+          <label className="form-label">Government ID Number</label>
           <input
             type="text"
             className="form-input"
@@ -81,7 +86,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">1. Name of applicant</label>
+          <label className="form-label">Name of applicant</label>
           <input
             type="text"
             className="form-input"
@@ -91,7 +96,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">2. Legal status</label>
+          <label className="form-label">Legal status</label>
           <select
             className="form-select"
             value={legalStatus}
@@ -122,7 +127,7 @@ const FormPage: React.FC = () => {
         )}
 
         <div className="form-row">
-          <label className="form-label">3. CIPRO/registration number</label>
+          <label className="form-label">CIPRO/registration number</label>
           <input
             type="text"
             className="form-input"
@@ -132,7 +137,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">4. Date of commencement</label>
+          <label className="form-label">Date of commencement</label>
           <input
             type="date"
             className="form-input"
@@ -142,7 +147,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">5. Financial Year-End</label>
+          <label className="form-label">Financial Year-End</label>
           <input
             type="date"
             className="form-input"
@@ -152,7 +157,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">6. Income Tax reg. number</label>
+          <label className="form-label">Income Tax reg. number</label>
           <input
             type="text"
             className="form-input"
@@ -162,7 +167,7 @@ const FormPage: React.FC = () => {
         </div>
 
         <div className="form-row">
-          <label className="form-label">7. VAT registration number</label>
+          <label className="form-label">VAT registration number</label>
           <input
             type="text"
             className="form-input"
@@ -171,17 +176,15 @@ const FormPage: React.FC = () => {
           />
         </div>
 
-        <div className="form-buttons">
-          <button type="button" className="form-button" onClick={handleSubmit}>
-            Submit
-          </button>
-        </div>
+      
+      <div className="show-all-container">
 
-        <div className="show-all-container">
+        <button className="filter-btn" onClick={handleSubmit}>Submit</button>
+      </div>
 
-        <button className="filter-btn" onClick={logoutfunction}>Logout</button>
-        </div>
+        
       </form>
+    </div>
     </div>
   );
 };
