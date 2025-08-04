@@ -1,0 +1,169 @@
+import React, { useState } from 'react';
+import './FormPage.css';
+
+const FormPage: React.FC = () => {
+  const [personId, setPersonId] = useState('');
+  const [applicantName, setApplicantName] = useState('');
+  const [legalStatus, setLegalStatus] = useState('');
+  const [otherLegalStatus, setOtherLegalStatus] = useState('');
+  const [ciproRegistrationNumber, setCiproRegistrationNumber] = useState('');
+  const [dateOfCommencement, setDateOfCommencement] = useState('');
+  const [financialYearEnd, setFinancialYearEnd] = useState('');
+  const [incomeTaxNumber, setIncomeTaxNumber] = useState('');
+  const [vatRegistrationNumber, setVatRegistrationNumber] = useState('');
+
+  const handleSubmit = async () => {
+    const data = {
+      personId,
+      applicantName,
+      legalStatus: legalStatus === 'other' ? otherLegalStatus : legalStatus,
+      ciproRegistrationNumber,
+      dateOfCommencement,
+      financialYearEnd,
+      incomeTaxNumber,
+      vatRegistrationNumber,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch('http://localhost:9092/validate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log('Submitted successfully:', result);
+        alert('Form submitted successfully!');
+      } else {
+        const errorData = await response.text();
+        console.error('Error:', errorData);
+        alert('Submission failed.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error connecting to server.');
+    }
+  };
+
+  return (
+    <div className="form-container">
+      <h2 className="form-header">PART 1 – APPLICANT’S INFORMATION</h2>
+
+      <form>
+        <div className="form-row">
+          <label className="form-label">Person ID</label>
+          <input
+            type="text"
+            className="form-input"
+            value={personId}
+            onChange={(e) => setPersonId(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">1. Name of applicant</label>
+          <input
+            type="text"
+            className="form-input"
+            value={applicantName}
+            onChange={(e) => setApplicantName(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">2. Legal status</label>
+          <select
+            className="form-select"
+            value={legalStatus}
+            onChange={(e) => setLegalStatus(e.target.value)}
+          >
+            <option value="">-- Select Legal Status --</option>
+            <option value="2.1 Private Company">2.1 Private Company</option>
+            <option value="2.2 Public Company">2.2 Public Company</option>
+            <option value="2.3 Partnership">2.3 Partnership</option>
+            <option value="2.4 Close Corporation">2.4 Close Corporation</option>
+            <option value="2.5 Co-operative">2.5 Co-operative</option>
+            <option value="2.6 Trust">2.6 Trust</option>
+            <option value="other">2.7 Other (specify)</option>
+          </select>
+        </div>
+
+        {legalStatus === 'other' && (
+          <div className="form-row">
+            <label className="form-label">Other Legal Status</label>
+            <input
+              type="text"
+              className="form-input"
+              value={otherLegalStatus}
+              onChange={(e) => setOtherLegalStatus(e.target.value)}
+              placeholder="Specify other legal status"
+            />
+          </div>
+        )}
+
+        <div className="form-row">
+          <label className="form-label">3. CIPRO/registration number</label>
+          <input
+            type="text"
+            className="form-input"
+            value={ciproRegistrationNumber}
+            onChange={(e) => setCiproRegistrationNumber(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">4. Date of commencement</label>
+          <input
+            type="date"
+            className="form-input"
+            value={dateOfCommencement}
+            onChange={(e) => setDateOfCommencement(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">5. Financial Year-End</label>
+          <input
+            type="date"
+            className="form-input"
+            value={financialYearEnd}
+            onChange={(e) => setFinancialYearEnd(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">6. Income Tax reg. number</label>
+          <input
+            type="text"
+            className="form-input"
+            value={incomeTaxNumber}
+            onChange={(e) => setIncomeTaxNumber(e.target.value)}
+          />
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">7. VAT registration number</label>
+          <input
+            type="text"
+            className="form-input"
+            value={vatRegistrationNumber}
+            onChange={(e) => setVatRegistrationNumber(e.target.value)}
+          />
+        </div>
+
+        <div className="form-buttons">
+          <button type="button" className="form-button" onClick={handleSubmit}>
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default FormPage;
