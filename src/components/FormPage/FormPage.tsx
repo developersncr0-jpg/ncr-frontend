@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './FormPage.css';
 import LoginPage from '../LoginPage/LoginPage';
 import NavigationBar from '../FormPage/NavigationBar';
@@ -6,8 +7,8 @@ import '../ManagerPage/ManagerView.css'
 
 
 const FormPage: React.FC = () => {
-  const [personId, setPersonId] = useState('');
-  const [applicantName, setApplicantName] = useState('');
+  const [personId, setPersonId] = useState('12462');
+  const [applicantName, setApplicantName] = useState('Akshata Shinde');
   const [legalStatus, setLegalStatus] = useState('');
   const [otherLegalStatus, setOtherLegalStatus] = useState('');
   const [ciproRegistrationNumber, setCiproRegistrationNumber] = useState('');
@@ -15,7 +16,10 @@ const FormPage: React.FC = () => {
   const [financialYearEnd, setFinancialYearEnd] = useState('');
   const [incomeTaxNumber, setIncomeTaxNumber] = useState('');
   const [vatRegistrationNumber, setVatRegistrationNumber] = useState('');
+  const navigate = useNavigate();
   const [loggedOut, setLoggedOut] = useState(false);
+
+
   const logoutfunction = () => {
     setLoggedOut(true);
   };
@@ -56,15 +60,17 @@ const FormPage: React.FC = () => {
         const result = await response.json();
         console.log('Submitted successfully:', result);
         alert('Form submitted successfully!');
+        navigate('/tracking');
       } else {
         const errorData = await response.text();
         console.error('Error:', errorData);
         alert('Submission failed.');
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+    
       alert('Error connecting to server.');
     }
+
   };
 
   

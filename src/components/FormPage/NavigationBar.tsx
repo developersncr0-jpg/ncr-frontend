@@ -13,6 +13,20 @@ const NavigationBar: React.FC = () => {
     { name: 'Logout', path: '/' },
   ];
 
+  React.useEffect(() => {
+    if (window.location.pathname === '/newForm') {
+      setActive('Fill Form');
+    }
+    if (window.location.pathname === '/tracking') {
+      setActive('Application Status');
+    }
+    if (window.location.pathname === '/tracking') {
+      setActive('Application Status');
+    }
+  }, []);
+
+
+
   const handleClick = (item: { name: string; path: string }) => {
     setActive(item.name);
     if (item.name === 'Logout') {
