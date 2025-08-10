@@ -7,8 +7,8 @@ import '../ManagerPage/ManagerView.css'
 
 
 const FormPage: React.FC = () => {
-  const [personId, setPersonId] = useState('12462');
-  const [applicantName, setApplicantName] = useState('Akshata Shinde');
+  const [personId, setPersonId] = useState('123');
+  const [applicantName, setApplicantName] = useState('cp');
   const [legalStatus, setLegalStatus] = useState('');
   const [otherLegalStatus, setOtherLegalStatus] = useState('');
   const [ciproRegistrationNumber, setCiproRegistrationNumber] = useState('');
@@ -16,6 +16,7 @@ const FormPage: React.FC = () => {
   const [financialYearEnd, setFinancialYearEnd] = useState('');
   const [incomeTaxNumber, setIncomeTaxNumber] = useState('');
   const [vatRegistrationNumber, setVatRegistrationNumber] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const [loggedOut, setLoggedOut] = useState(false);
 
@@ -181,6 +182,8 @@ const FormPage: React.FC = () => {
             onChange={(e) => setVatRegistrationNumber(e.target.value)}
           />
         </div>
+
+    
 
       
       <div className="show-all-container">

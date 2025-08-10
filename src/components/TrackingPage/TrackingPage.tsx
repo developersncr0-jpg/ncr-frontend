@@ -25,7 +25,7 @@ const TrackingPage: React.FC = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        personalId: "12462",
+        personalId: "123",
       },
     })
       .then((res) => res.json())
@@ -93,7 +93,7 @@ const TrackingPage: React.FC = () => {
                           : "text-yellow-600"
                       }`}
                     >
-                      {app.status === "Waiting Approval"? "In Progress" : app.status}
+                      {["Waiting Approval", "Vetting Rejected"].includes(app.status ?? "") ? "In Progress" : app.status}
                     </td>
                     <td className="py-3 px-4">
                       {app.status?.toLowerCase() === "approved" ? (
