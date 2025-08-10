@@ -71,3 +71,102 @@
 .form-button:hover {
   background-color: #b56400;
 }
+
+.form-button {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.form-button.approve {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.form-button.approve:hover {
+  background-color: #45a049;
+}
+
+.form-button.reject {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.form-button.reject:hover {
+  background-color: #da190b;
+}
+
+.form-button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.status-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.status-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.status-btn:active {
+  transform: scale(0.97);
+}
+
+.approve-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.approve-btn:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.reject-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.reject-btn:hover:not(:disabled) {
+  background-color: #d7382e;
+}
+
+.center-align {
+  justify-content: center;
+}
+
+.submit-btn {
+  background-color: #d47f00;
+  color: white;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #b56400;
+}
+
+.back-btn {
+  background-color: #555;
+  color: white;
+}
+
+.back-btn:hover:not(:disabled) {
+  background-color: #333;
+}

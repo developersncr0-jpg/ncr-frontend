@@ -21,7 +21,9 @@ const ManagerFormPage: React.FC = () => {
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleStatusChange = async (
+    e: { target: { value: string } }
+  ) => {
     const selectedStatus = e.target.value;
     setStatus(selectedStatus);
 
@@ -29,17 +31,16 @@ const ManagerFormPage: React.FC = () => {
 
     try {
       setIsSubmitting(true);
-     const response = await axios.post(
-  'https://ncr-backend-701153034898.europe-west1.run.app/statusupdate',
-  {}, // empty body
-  {
-    headers: {
-      applicationId: applicationNumber || '',
-      status: selectedStatus,
-    },
-  }
-);
-
+      await axios.post(
+        'https://ncr-backend-701153034898.europe-west1.run.app/statusupdate',
+        {},
+        {
+          headers: {
+            applicationId: applicationNumber || '',
+            status: selectedStatus,
+          },
+        }
+      );
 
       setMessage(`Status updated to ${selectedStatus.toUpperCase()}`);
       setTimeout(() => navigate('/manager'), 1500);
@@ -63,62 +64,68 @@ const ManagerFormPage: React.FC = () => {
       <h2 className="form-header">APPLICANT’S INFORMATION</h2>
 
       <form>
-        {/* Input fields */}
-        <div className="form-row">
-          <label className="form-label">Government ID Number</label>
-          <input type="text" className="form-input" value={application.personId || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">Name Of Applicant</label>
-          <input type="text" className="form-input" value={application.applicantName || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">Legal Status</label>
-          <input type="text" className="form-input" value={application.legalStatus || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">CIPRO/Registration Number</label>
-          <input type="text" className="form-input" value={application.ciproRegistrationNumber || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">Date Of Commencement</label>
-          <input type="date" className="form-input" value={application.dateOfCommencement || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">Financial Year-End</label>
-          <input type="date" className="form-input" value={application.financialYearEnd || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">Income Tax Reg. Number</label>
-          <input type="text" className="form-input" value={application.incomeTaxNumber || ''} disabled />
-        </div>
-        <div className="form-row">
-          <label className="form-label">VAT Registration Number</label>
-          <input type="text" className="form-input" value={application.vatRegistrationNumber || ''} disabled />
-        </div>
-        <div className="form-row" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+        {[
+          { label: 'Government ID Number', value: application.personId },
+          { label: 'Name Of Applicant', value: application.applicantName },
+          { label: 'Legal Status', value: application.legalStatus },
+          { label: 'CIPRO/Registration Number', value: application.ciproRegistrationNumber },
+          { label: 'Date Of Commencement', value: application.dateOfCommencement, type: 'date' },
+          { label: 'Financial Year-End', value: application.financialYearEnd, type: 'date' },
+          { label: 'Income Tax Reg. Number', value: application.incomeTaxNumber },
+          { label: 'VAT Registration Number', value: application.vatRegistrationNumber },
+          { label: 'Status', value: application.message }
+        ].map((field, idx) => (
+          <div className="form-row" key={idx}>
+            <label className="form-label">{field.label}</label>
+            <input
+              type={field.type || 'text'}
+              className="form-input"
+              value={field.value || ''}
+              disabled
+            />
+          </div>
+        ))}
 
-          <select
-            className="form-input"
-            value={status}
-            onChange={handleStatusChange}
-            disabled={isSubmitting}
-            style={{ width: '50%', maxWidth: '300px' }}
+        {/* Approve / Reject buttons */}
+        <div className="status-buttons center-align">
+          <button
+            type="button"
+            className={`status-btn approve-btn ${status === 'Approved' ? 'selected' : ''}`}
+            onClick={() => setStatus('Approved')}
+            disabled={application.status === 'Approved' || application.status === 'Rejected' || isSubmitting}
           >
-            <option value="">Select Status</option>
-            <option value="Approved">Approve</option>
-            <option value="Rejected">Reject</option>
-          </select>
-        </div>
-
-
-        {message && <p style={{ marginTop: '15px' }}>{message}</p>}
-
-        <div className="show-all-container">
-          <button type="button" className="filter-btn" onClick={handleBack}>
-            Back
+            Approve
+          </button>
+          <button
+            type="button"
+            className={`status-btn reject-btn ${status === 'Rejected' ? 'selected' : ''}`}
+            onClick={() => setStatus('Rejected')}
+            disabled={application.status === 'Approved' || application.status === 'Rejected' || isSubmitting}
+          >
+            Reject
           </button>
         </div>
+
+        {/* Submit button */}
+        <div className="status-buttons center-align">
+          <button
+            type="button"
+            className="status-btn submit-btn"
+            onClick={(e) => handleStatusChange({ target: { value: status } })}
+            disabled={
+              !status ||
+              application.status === 'Approved' ||
+              application.status === 'Rejected' ||
+              isSubmitting
+            }
+          >
+            Submit
+          </button>
+        </div>
+
+        {message && <p className="status-message">{message}</p>}
+
+        
       </form>
     </div>
   );

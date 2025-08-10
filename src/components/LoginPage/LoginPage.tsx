@@ -18,8 +18,8 @@ const LoginPage: React.FC = () => {
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
   const allowedUsers: Record<string, string> = {
-    'Akshata.Shinde@gmail.com': 'ncrdev123',
-    'Ram@gmail.com': 'ncrdev123',
+    'Cp@gmail.com': 'ncrdev123',
+    'Ncr@gmail.com': 'ncrdev123',
   };
 
   const validateLogin = (email: string, password: string): boolean => {
@@ -37,10 +37,10 @@ const LoginPage: React.FC = () => {
   };
 
   // If user is logged in, show their respective component
-  if (loggedInUser === 'Akshata.Shinde@gmail.com') {
+  if (loggedInUser === 'Cp@gmail.com') {
     navigate('/home');
     return <HomePage />;
-  } else if (loggedInUser === 'Ram@gmail.com') {
+  } else if (loggedInUser === 'Ncr@gmail.com') {
     navigate('/managerhome');
     return <ManagerView />;
   }
